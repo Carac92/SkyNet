@@ -1,6 +1,5 @@
 package com.safetynet.alert.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alert.model.FireStation;
 import com.safetynet.alert.service.FireStationService;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,7 @@ public class FireStationControllerTest {
 
     @Test
     public void testUpdateFireStation() throws Exception {
-        when(fireStationService.updateFireStation(ArgumentMatchers.any(FireStation.class))).thenReturn(new FireStation());
+        when(fireStationService.updateFireStation(ArgumentMatchers.any(FireStation.class))).thenReturn(true);
 
         mvc.perform(put("/firestation")
                 .content("{ \"station\":9, \"address\": \"1509 Culver St\"}")
@@ -57,5 +56,36 @@ public class FireStationControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+    @Test
+    public void testDeleteFireStationThatIsEmpty() throws Exception {
+        when(fireStationService.removeFireStation(ArgumentMatchers.any(FireStation.class)))
+                .thenReturn(true);
+        mvc.perform(delete("/firestation")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void testUpdateFireStationThatIsEmpty()throws Exception {
+        when(fireStationService.updateFireStation(ArgumentMatchers.any(FireStation.class)))
+                .thenReturn(true);
+        mvc.perform(put("/firestation")
+                .content("{}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void testAddFireStationThatIsEmpty()throws Exception {
+        when(fireStationService.addFireStation(ArgumentMatchers.any(FireStation.class)))
+                .thenReturn(true);
+
+        mvc.perform(put("/firestation")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
 }

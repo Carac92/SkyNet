@@ -20,13 +20,13 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         List<MedicalRecord> medicalRecords = data.getMedicalrecords();
         int i= 0;
         for (MedicalRecord medicalRecord : medicalRecords) {
-           i++;
            if((medicalRecord.getFirstName().equals(medicalRecordToUpdate.getFirstName()))
                    &&(medicalRecord.getLastName().equals(medicalRecordToUpdate.getLastName()))) {
                medicalRecords.set(i, medicalRecordToUpdate);
                data.setMedicalrecords(medicalRecords);
                return true;
            }
+            i++;
         }
         return false;
     }

@@ -20,13 +20,13 @@ public class PersonServiceImpl implements com.safetynet.alert.service.PersonServ
         List<Person> persons = data.getPersons();
         int i=0;
         for (Person p : persons) {
-            i++;
             if((p.getFirstName().equals(personToUpdate.getFirstName()))
                     &&(p.getLastName().equals(personToUpdate.getLastName()))){
                 persons.add(i,personToUpdate);
                 data.setPersons(persons);
                 return true;
             }
+            i++;
         }
         return false;
     }
@@ -37,8 +37,8 @@ public class PersonServiceImpl implements com.safetynet.alert.service.PersonServ
         Iterator<Person> it = persons.iterator();
         while(it.hasNext()) {
             Person person = it.next();
-            if (person.getFirstName().equals(personToAdd.getFirstName()) ||
-                    person.getLastName().equals(personToAdd.getLastName())) {
+            if (!person.getFirstName().equals(personToAdd.getFirstName()) ||
+                    !person.getLastName().equals(personToAdd.getLastName())) {
                 persons.add(person);
                 data.setPersons(persons);
                 return true;

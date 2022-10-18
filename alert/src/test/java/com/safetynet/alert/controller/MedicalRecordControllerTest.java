@@ -60,6 +60,37 @@ public class MedicalRecordControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+    @Test
+    public void testDeleteMedicalRecordThatIsEmpty()throws Exception {
+        when(medicalRecordService.removeMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+                .thenReturn(true);
 
+        mvc.perform(delete("/medicalRecord")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void testUpdateMedicalRecordThatIsEmpty()throws Exception {
+        when(medicalRecordService.updateMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+                .thenReturn(true);
 
+        mvc.perform(put("/medicalRecord")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void addMedicalRecordThatIsEmpty()throws Exception {
+        when(medicalRecordService.addMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+                .thenReturn(true);
+
+        mvc.perform(post("/medicalRecord")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }

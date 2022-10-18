@@ -59,4 +59,37 @@ public class PersonControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+    @Test
+    public void testDeletePersonThatIsEmpty()throws Exception {
+        when(personService.deletePerson(ArgumentMatchers.any(Person.class)))
+                .thenReturn(true);
+        mvc.perform(delete("/person")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void testUpdatePersonThatIsEmpty()throws Exception {
+        when(personService.updatePerson(ArgumentMatchers.any(Person.class)))
+                .thenReturn(true);
+
+        mvc.perform(put("/person")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testAddPersonThatIsEmpty()throws Exception {
+        when(personService.addPerson(ArgumentMatchers.any(Person.class)))
+                .thenReturn(true);
+
+        mvc.perform(post("/person")
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }

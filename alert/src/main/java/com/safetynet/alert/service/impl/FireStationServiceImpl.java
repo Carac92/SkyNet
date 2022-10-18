@@ -15,18 +15,18 @@ public class FireStationServiceImpl implements FireStationService {
 
 
     @Override
-    public FireStation updateFireStation(FireStation fireStationToUpdate){
+    public boolean updateFireStation(FireStation fireStationToUpdate){
         List<FireStation> fireStations = data.getFirestations();
         int i = 0;
         for(FireStation fireStation : data.getFirestations()) {
-            i++;
             if(fireStation.getAddress().equals(fireStationToUpdate.getAddress())) {
                 fireStations.add(fireStation);
                 data.setFirestations(fireStations);
-                return fireStationToUpdate;
+                return true;
             }
+            i++;
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class FireStationServiceImpl implements FireStationService {
         Iterator<FireStation> it = fireStations.iterator();
         while(it.hasNext()) {
             FireStation fs = it.next();
-            if(!fs.getAddress().equals(fireStation.getAddress())) {
-                fireStations.add(fireStation);
-                data.setFirestations(fireStations);
-                return true;
+            if(fs.getAddress().equals(fireStation.getAddress())) {
+                return false;
             }
         }
-        return false;
+        fireStations.add(fireStation);
+        data.setFirestations(fireStations);
+        return true;
         }
 
     @Override

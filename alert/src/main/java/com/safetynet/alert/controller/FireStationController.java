@@ -49,8 +49,8 @@ public class FireStationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Adress And Station Required");
         }
-        FireStation updateFS= fireStationService.updateFireStation(fireStation);
-        if(updateFS==null){
+        boolean updateFS= fireStationService.updateFireStation(fireStation);
+        if(updateFS==false){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("address already mapped to a Firestation");
         }else{

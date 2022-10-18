@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FireStationService {
 
-    FireStation updateFireStation(FireStation fireStationToUpdate);
+    boolean updateFireStation(FireStation fireStationToUpdate);
     boolean addFireStation(FireStation fireStation);
     boolean removeFireStation(FireStation fireStation);
 }
