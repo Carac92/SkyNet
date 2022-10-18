@@ -27,10 +27,10 @@ public class FireStationControllerTest {
 
     @Test
     public void testAddFireStation() throws Exception {
-        when(fireStationService.addFireStation(ArgumentMatchers.any(FireStation.class))).thenReturn(new FireStation());
+        when(fireStationService.addFireStation(ArgumentMatchers.any(FireStation.class))).thenReturn(true);
 
         mvc.perform(post("/firestation")
-                        .content("{ \"station\": 9, \"address\": \"testtestSt\"}")
+                        .content("{ \"station\":3, \"address\": \"boyd\"}")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(status().isCreated());
@@ -41,7 +41,7 @@ public class FireStationControllerTest {
         when(fireStationService.updateFireStation(ArgumentMatchers.any(FireStation.class))).thenReturn(new FireStation());
 
         mvc.perform(put("/firestation")
-                .content("{ \"station\": 9, \"address\": \"1509 Culver St\"}")
+                .content("{ \"station\":9, \"address\": \"1509 Culver St\"}")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

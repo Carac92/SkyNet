@@ -4,6 +4,8 @@ import com.safetynet.alert.model.Data;
 import com.safetynet.alert.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -23,7 +25,6 @@ public class PersonServiceImpl implements com.safetynet.alert.service.PersonServ
                     &&(p.getLastName().equals(personToUpdate.getLastName()))){
                 persons.add(i,personToUpdate);
                 data.setPersons(persons);
-
                 return true;
             }
         }
@@ -31,12 +32,17 @@ public class PersonServiceImpl implements com.safetynet.alert.service.PersonServ
     }
 
     @Override
-    public boolean addPerson(Person person) {
+    public boolean addPerson(Person personToAdd) {
         List<Person> persons = data.getPersons();
-        if (!persons.contains(person)) {
-            persons.add(person);
-            data.setPersons(persons);
-            return true;
+        Iterator<Person> it = persons.iterator();
+        while(it.hasNext()) {
+            Person person = it.next();
+            if (person.getFirstName().equals(personToAdd.getFirstName()) ||
+                    person.getLastName().equals(personToAdd.getLastName())) {
+                persons.add(person);
+                data.setPersons(persons);
+                return true;
+            }
         }
         return false;
     }
@@ -44,12 +50,12 @@ public class PersonServiceImpl implements com.safetynet.alert.service.PersonServ
     @Override
     public boolean deletePerson(Person personToDelete) {
         List<Person> persons = data.getPersons();
-        int i = 0;
-        for (Person p : persons){
-            i++;
-            if((p.getLastName().equals(personToDelete.getLastName()))&&(p.getFirstName().equals(personToDelete.getFirstName()))){
-                persons.remove(i);
-                data.setPersons(persons);
+        Iterator<Person> it = persons.iterator();
+        while(it.hasNext()) {
+            Person person = it.next();
+            if(person.getFirstName().equals(personToDelete.getFirstName()) &&
+                    person.getLastName().equals(personToDelete.getLastName())) {
+                it.remove();
                 return true;
             }
         }

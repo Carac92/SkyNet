@@ -32,8 +32,8 @@ public class FireStationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Adress And Station Required");
         }
-        List<FireStation> fireStations= fireStationService.addFireStation(fireStation);
-        if(!fireStations.contains(fireStation)){
+        boolean addFs= fireStationService.addFireStation(fireStation);
+        if(addFs==false){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("FireStation and address already exists");
         }else{
@@ -42,23 +42,23 @@ public class FireStationController {
                     .body("Added : " + fireStation.toString());
         }
     }
-//    @PutMapping
-//    public ResponseEntity<String> updateFireStation(@RequestBody FireStation fireStation) {
-//        log.info("Updating FireStation - params:{}", fireStation.toString());
-//        if(StringUtils.isEmpty(fireStation.getAddress()) || fireStation.getStation()==null){
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body("Adress And Station Required");
-//        }
-//        FireStation updateFS= fireStationService.updateFireStation(fireStation);
-//        if(updateFS==null){
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body("address already mapped to a Firestation");
-//        }else{
-//            log.info("updateFireStation - Response:{}", fireStation.toString());
-//            return ResponseEntity.status(HttpStatus.OK)
-//                    .body("Updated : " + fireStation.toString());
-//        }
-//    }
+    @PutMapping
+    public ResponseEntity<String> updateFireStation(@RequestBody FireStation fireStation) {
+        log.info("Updating FireStation - params:{}", fireStation.toString());
+        if(StringUtils.isEmpty(fireStation.getAddress()) || fireStation.getStation()==null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Adress And Station Required");
+        }
+        FireStation updateFS= fireStationService.updateFireStation(fireStation);
+        if(updateFS==null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("address already mapped to a Firestation");
+        }else{
+            log.info("updateFireStation - Response:{}", fireStation.toString());
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Updated : " + fireStation.toString());
+        }
+    }
     @DeleteMapping
     public ResponseEntity <String> deleteFireStation(@RequestBody FireStation fireStation){
         log.info("Deleting Firestation - params : {}", fireStation.toString());
@@ -73,7 +73,7 @@ public class FireStationController {
         }else{
             log.info("Removing Fire Station - Response: {}", fireStation.toString());
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Updated : " + fireStation.toString());
+                    .body("Deleted : " + fireStation.toString());
         }
     }
 }

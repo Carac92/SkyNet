@@ -33,10 +33,10 @@ public class FireStationServiceTest {
         // Given
         FireStation fireStation = new FireStation(1, "test");
         //When
-        FireStation result = fireStationService.addFireStation(fireStation);
+        boolean result = fireStationService.addFireStation(fireStation);
 
         //Then
-        assertThat(result).isEqualTo(fireStation);
+        assertThat(result).isEqualTo(true);
 
     }
 
