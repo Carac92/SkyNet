@@ -53,8 +53,8 @@ public class MedicalRecordServiceTest {
     @Test
     public void updateMedicalRecordTest(){
         // GIVEN
-        List<String> medications = Arrays.asList("test");
-        List<String> allergies = Arrays.asList("test");
+        List<String> medications = Arrays.asList("testGetFireDTO");
+        List<String> allergies = Arrays.asList("testGetFireDTO");
         MedicalRecord medicalRecord = new MedicalRecord("John", "Boyd", new Date(01/01/1980), medications, allergies);
 
         //WHEN

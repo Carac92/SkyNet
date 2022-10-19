@@ -31,7 +31,7 @@ public class PersonControllerTest {
                 .thenReturn(true);
 
         mvc.perform(post("/person")
-                .content("{ \"firstName\":\"test\", \"lastName\":\"tester\", \"address\":\"1509 Culver St\", \"city\":\"Culver\", \"zip\":\"97451\", \"phone\":\"841-874-6512\", \"email\":\"test@email.com\" }")
+                .content("{ \"firstName\":\"testGetFireDTO\", \"lastName\":\"tester\", \"address\":\"1509 Culver St\", \"city\":\"Culver\", \"zip\":\"97451\", \"phone\":\"841-874-6512\", \"email\":\"testGetFireDTO@email.com\" }")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());

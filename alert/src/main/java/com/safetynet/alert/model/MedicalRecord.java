@@ -78,11 +78,8 @@ public class MedicalRecord {
 
     // if age is not set it's setting age with age calculator Method.
     public Integer getAge() {
-        if (age == null) {
             setAge();
             return age;
-        }
-        return age;
     }
 
     public void setAge() {

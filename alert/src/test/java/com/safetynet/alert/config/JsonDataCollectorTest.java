@@ -1,4 +1,4 @@
-package com.safetynet.alert.datacollector;
+package com.safetynet.alert.config;
 
 import com.safetynet.alert.model.Data;
 import org.junit.jupiter.api.Test;

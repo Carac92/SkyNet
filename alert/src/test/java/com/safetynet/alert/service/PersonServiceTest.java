@@ -39,7 +39,7 @@ public class PersonServiceTest {
 
 
         // WHEN
-        boolean result = personService.addPerson(new Person("Test", "test", "test", "test", "test", "test", "test"));
+        boolean result = personService.addPerson(new Person("Test", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
 
         // THEN
         assertThat(result).isEqualTo(true);
@@ -49,7 +49,7 @@ public class PersonServiceTest {
     public void updatePersonTest(){
 
         // WHEN
-        boolean result = personService.updatePerson(new Person("John", "Boyd", "test", "test", "test", "test", "test"));
+        boolean result = personService.updatePerson(new Person("John", "Boyd", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
 
         // THEN
 

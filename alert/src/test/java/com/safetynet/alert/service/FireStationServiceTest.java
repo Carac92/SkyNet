@@ -25,7 +25,7 @@ public class FireStationServiceTest {
 
     @BeforeEach
     public void setUp(){
-        FireStation fireStation = new FireStation(1, "test");
+        FireStation fireStation = new FireStation(1, "testGetFireDTO");
         List<FireStation> fireStations= new ArrayList<>();
         fireStations.add(fireStation);
         when(data.getFirestations()).thenReturn(fireStations);
@@ -49,7 +49,7 @@ public class FireStationServiceTest {
         // Given
 
         //When
-        boolean result = fireStationService.updateFireStation(new FireStation(3, "test"));
+        boolean result = fireStationService.updateFireStation(new FireStation(3, "testGetFireDTO"));
 
         //Then
         assertThat(result).isEqualTo(true);
@@ -60,7 +60,7 @@ public class FireStationServiceTest {
         // Given
 
         // When
-        boolean result = fireStationService.removeFireStation(new FireStation(1, "test"));
+        boolean result = fireStationService.removeFireStation(new FireStation(1, "testGetFireDTO"));
 
         // Then
         assertThat(result).isEqualTo(true);
@@ -80,7 +80,7 @@ public class FireStationServiceTest {
     }
     @Test
     public void addFireStationThatAlreadyExistsTest(){
-        boolean result = fireStationService.addFireStation(new FireStation(1, "test"));
+        boolean result = fireStationService.addFireStation(new FireStation(1, "testGetFireDTO"));
 
         assertThat(result).isEqualTo(false);
     }
