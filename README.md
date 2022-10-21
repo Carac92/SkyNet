@@ -9,6 +9,7 @@ he Json Reader read the data on the file in resources data.json
 
 To install Maven : 
 https://maven.apache.org/install.html
+
 To install Java : 
 https://www.java.com/en/download/help/download_options.html
 
