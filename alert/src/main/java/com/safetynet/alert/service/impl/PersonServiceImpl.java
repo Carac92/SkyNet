@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of Person Service.
+ * Contains 3 methods one for adding a person to the list of person in data, one for updating , the last one for deleting.
+ */
 @Service
 public class PersonServiceImpl implements com.safetynet.alert.service.PersonService {
 

@@ -10,6 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller of Person Service.
+ * Autowired to PersonService. Generate a POST/PUT/DELETE endpoints for the person at the address :
+ * http_address/person
+ * request a person model in the body.
+ */
 @RestController
 @RequestMapping("person")
 public class PersonController {

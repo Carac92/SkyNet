@@ -1,17 +1,19 @@
-package com.safetynet.alert.datacollector;
+package com.safetynet.alert.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.safetynet.alert.model.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.Resource;
-import org.springframework.web.context.annotation.ApplicationScope;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Configuration of the Application.
+ * Generate a Bean of Data Model based on the data.json file in the resources.
+ */
 @Configuration
 public class JsonDataCollector {
 

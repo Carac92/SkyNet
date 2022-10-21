@@ -16,6 +16,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the Service PersonServiceImpl
+ * verify that the service add, update, and delete correctly the data on the Bean Data.
+ */
 @ExtendWith(SpringExtension.class)
 public class PersonServiceTest {
 
@@ -39,7 +44,7 @@ public class PersonServiceTest {
 
 
         // WHEN
-        boolean result = personService.addPerson(new Person("Test", "test", "test", "test", "test", "test", "test"));
+        boolean result = personService.addPerson(new Person("Test", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
 
         // THEN
         assertThat(result).isEqualTo(true);
@@ -49,7 +54,7 @@ public class PersonServiceTest {
     public void updatePersonTest(){
 
         // WHEN
-        boolean result = personService.updatePerson(new Person("John", "Boyd", "test", "test", "test", "test", "test"));
+        boolean result = personService.updatePerson(new Person("John", "Boyd", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
 
         // THEN
 

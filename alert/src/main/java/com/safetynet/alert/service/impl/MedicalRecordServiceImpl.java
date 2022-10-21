@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.List;
+
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of Medical Record Service.
+ * Contains 3 methods one to add a MR in the list of MR in Data, one to update and the last one to remove.
+ */
 @Service
 public class MedicalRecordServiceImpl implements MedicalRecordService {
 

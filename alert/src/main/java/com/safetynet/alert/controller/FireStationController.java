@@ -1,5 +1,7 @@
 package com.safetynet.alert.controller;
 
+import com.safetynet.alert.dto.FireStationDTO;
+import com.safetynet.alert.dto.FireStationFinalDTO;
 import com.safetynet.alert.model.FireStation;
 import com.safetynet.alert.service.FireStationService;
 import org.apache.logging.log4j.LogManager;
@@ -12,18 +14,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller for fire station.
+ * Generate a put post and delete endpoints which needs a FireStation in the body.
+ * Generate a get endpoint which generate a JSON response of FireStationFinalDTO at the address :
+ * http_address/firestation?stationNumber="stationNumber".
+ * request a fire station number in parameter.
+ */
 @RestController
 @RequestMapping("firestation")
 public class FireStationController {
 
     private static final Logger log = LogManager.getLogger(FireStationController.class);
 
-    private final FireStationService fireStationService;
-@Autowired
-    public FireStationController(FireStationService fireStationService) {
-        this.fireStationService = fireStationService;
-    }
-
+    @Autowired
+    private FireStationService fireStationService;
 
     @PostMapping
     public ResponseEntity <String> addFireStation(@RequestBody FireStation fireStation) {
@@ -75,5 +81,14 @@ public class FireStationController {
             return ResponseEntity.status(HttpStatus.OK)
                     .body("Deleted : " + fireStation.toString());
         }
+    }
+    @GetMapping
+    public ResponseEntity<Object> getPersonInfoByFireStationNumber(@RequestParam (name = "stationNumber") Integer stationNumber) {
+        if(stationNumber==null||stationNumber==0) return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Station Number must be specified");
+        List<FireStationDTO> result = fireStationService.getAllPeopleInTheFireStation(stationNumber);
+        if(result.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No person found");
+        FireStationFinalDTO finalResult = fireStationService.GetAllPeopleCoveredByFireStation(result);
+        return ResponseEntity.status(HttpStatus.OK).body(finalResult);
     }
 }
