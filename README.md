@@ -1,39 +1,50 @@
 # SkyNet
 Project 5 of OC Java courses. 
-It is an app working without a database as requested. It creates a bean of the data created by a Json reader.
-The Json Reader read the data on the file in resources data.json
 
--------------------------------------------------------- HOW TO INSTALL -----------------------------------------------------------------------------------
+It is an app working without a database as requested. It creates a bean of the data created by a Json reader.
+T
+he Json Reader read the data on the file in resources data.json
+
+------------------------------HOW TO  INSTALL----------------------------------------------
 
 To install Maven : 
 https://maven.apache.org/install.html
 To install Java : 
 https://www.java.com/en/download/help/download_options.html
 
--------------------------------------------------------- HOW TO START THE APP -----------------------------------------------------------------------------
+---------------------------- HOW TO START THE APP -----------------------------------------
 
 Write the following command in the Terminal : 
 java –jar <ExecutableJarFileName>.jar.
 
---------------------------------------------------------- HOW IT WORKS ------------------------------------------------------------------------------------
+------------------------------- HOW IT WORKS ----------------------------------------------
 
 It works at the URL : localhost:8080/
 
-1. TO MODIFY THE DATA -------------------------------------------------------------------------------------------------------------------------------------
+1. TO MODIFY THE DATA ---------------------------------------------------------------------
 
 http://localhost:8080/person 
+
 PUT POST DELETE http method with a Json person in the body. 
+
 PUT : The first name and the last name doesn't change.
+
 
 http://localhost:8080/firestation
+
 PUT POST DELETE http method with a Json firestation in the body.
+
 PUT: Only update the firestation number of an address.
 
+
 http://localhost:8080/medicalRecord
+
 PUT POST DELETE http method with a Json medical record in the body 
+
 PUT : The first name and the last name doesn't change.
 
-2. TO GET THE DATA. ---------------------------------------------------------------------------------------------------------------------------------------
+
+2. TO GET THE DATA. -----------------------------------------------------------------------
 
 http://localhost:8080/firestation?stationNumber=<station_number>
 
