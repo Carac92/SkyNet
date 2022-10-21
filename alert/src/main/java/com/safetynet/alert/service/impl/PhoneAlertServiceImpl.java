@@ -11,6 +11,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of Phone Alert Service.
+ * Contains one method that returns a list of phone numbers based on a fire station number.
+ * Get a list of the fire station address mapped with this fire station number. Then for each address generate a list of person
+ * filter by the address mapped of the fire station. For each person generate a phone Alert Dto with the phone number of
+ * the person. Then add the PhoneAlertDTO to the list returned.
+ */
 @Service
 public class PhoneAlertServiceImpl implements PhoneAlertService {
 

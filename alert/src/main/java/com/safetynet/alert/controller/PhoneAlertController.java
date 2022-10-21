@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller of the Phone Alert Service.
+ * Autowired to PhoneAlertService. Generate a get endpoint that gives a JSON of a List of PhoneAlertDTO at the address:
+ * http_address/phoneAlert?stationNumber="stationNumber"
+ * Request a fire station number in parameter.
+ */
 @RestController
 @RequestMapping("/phoneAlert")
 public class PhoneAlertController {
@@ -26,7 +33,7 @@ public class PhoneAlertController {
     @GetMapping
     public ResponseEntity<Object> getPhoneAlertByStationNumber(@RequestParam(name = "firestation") Integer stationNumber) {
         log.info("Get phone of all Persons in the range of station : params{}", stationNumber);
-        if(stationNumber.equals(0)||stationNumber.equals(null)) return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        if(stationNumber.equals(0)) return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Station number is required");
         List<PhoneAlertDTO> phones = phoneAlertService.getAllPhoneForAFireStationNumber(stationNumber);
         if(phones.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("They are no phones for this station");

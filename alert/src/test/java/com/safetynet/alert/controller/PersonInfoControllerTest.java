@@ -20,6 +20,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the controller PersonInfoController.
+ * Verify that the return status is correct with or without parameters
+ * Verify that the return status is correct with an empty List
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = PersonInfoController.class)
 public class PersonInfoControllerTest {

@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller for the Community Email endpoint.
+ * AutoWired to Community Email Service. Generate a get end point at "http_address/communityEmail?city="city"
+ * to have the Json list of community email.
+ * Request a city in parameter.
+ */
 @RestController
 @RequestMapping("/communityEmail")
 public class CommunityEmailController {

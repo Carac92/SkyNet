@@ -4,6 +4,11 @@ package com.safetynet.alert.dto;
 import lombok.Data;
 
 import java.util.List;
+
+/**
+ * @author Quentin_Caracatzanis
+ * Data Transfer Object for Child Alert endpoint.
+ */
 @Data
 public class ChildAlertDTO {
     private String firstName;

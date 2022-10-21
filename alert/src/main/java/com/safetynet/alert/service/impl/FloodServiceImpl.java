@@ -13,6 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of Flood Service.
+ * Contains one method that return a List of FloodDTO based on a list of station number.
+ * For each station number create a list of Fire Station. Then for each Firestation address mapped create a list of person.
+ * for each person firstname and lastname create a list of medical record.
+ * then Generate the model FloodDTO and add it to the list of floodDTO which is return at the end of the method.
+ */
 @Service
 public class FloodServiceImpl implements FloodService {
 

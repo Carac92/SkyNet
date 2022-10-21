@@ -12,6 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of the ChildAlertService
+ * One method that returns a List of ChildAlertDTO from an address.
+ * The Algorithm Collect children from an address through Person and Medical Record  to get the Age.
+ * The other Algorithm Collect the Person of the Same address for each child.
+ */
+
 @Service
 public class ChildAlertServiceImpl implements ChildAlertService {
 
@@ -44,7 +52,7 @@ public class ChildAlertServiceImpl implements ChildAlertService {
             }
         //CollectPersons of the same address for each child
         for(ChildAlertDTO child : childAlertDTOs){
-            List<String> personOfTheSameAddress = new ArrayList<String>();
+            List<String> personOfTheSameAddress = new ArrayList<>();
             for(Person person : persons){
                 if(child.getAddress().equals(person.getAddress()))
                     personOfTheSameAddress.add(person.getLastName()+ " " + person.getFirstName());

@@ -1,8 +1,11 @@
 package com.safetynet.alert.model;
 
-import org.springframework.stereotype.Component;
+/**
+ * @author Quentin_Caracatzanis
+ * Model of Person contains all the information about a person.
+ */
 
-@Component
+
 public class Person {
     private String firstName;
     private String lastName;

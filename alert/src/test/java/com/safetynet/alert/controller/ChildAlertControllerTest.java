@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the controller class ChildAlertController
+ * verify that the status is correct with parameter and without parameters.
+ * verify that the status is correct with an empty list.
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = ChildAlertController.class)
 public class ChildAlertControllerTest {
@@ -91,4 +98,5 @@ public class ChildAlertControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
+
 }

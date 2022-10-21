@@ -14,6 +14,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller for fire station.
+ * Generate a put post and delete endpoints which needs a FireStation in the body.
+ * Generate a get endpoint which generate a JSON response of FireStationFinalDTO at the address :
+ * http_address/firestation?stationNumber="stationNumber".
+ * request a fire station number in parameter.
+ */
 @RestController
 @RequestMapping("firestation")
 public class FireStationController {
@@ -78,9 +86,9 @@ public class FireStationController {
     public ResponseEntity<Object> getPersonInfoByFireStationNumber(@RequestParam (name = "stationNumber") Integer stationNumber) {
         if(stationNumber==null||stationNumber==0) return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Station Number must be specified");
-        List<FireStationDTO> result = fireStationService.allPeopleInTheFireStation(stationNumber);
+        List<FireStationDTO> result = fireStationService.getAllPeopleInTheFireStation(stationNumber);
         if(result.isEmpty()) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No person found");
-        FireStationFinalDTO finalResult = fireStationService.allPeopleCoveredByFireStation(result);
+        FireStationFinalDTO finalResult = fireStationService.GetAllPeopleCoveredByFireStation(result);
         return ResponseEntity.status(HttpStatus.OK).body(finalResult);
     }
 }

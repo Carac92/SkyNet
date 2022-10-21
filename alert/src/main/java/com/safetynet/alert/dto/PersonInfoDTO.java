@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Data Transfer Object for Person Information end point.
+ */
 @Data
 public class PersonInfoDTO {
     private String LastName;

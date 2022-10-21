@@ -1,11 +1,11 @@
 package com.safetynet.alert.model;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Model of Data that contains List of the different class models and generate them when the bean is created.
+ */
 
 public class Data {
     List <Person> persons;

@@ -5,6 +5,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Data Transfer Object for Flood end point.
+ */
 @Data
 public class FloodDTO {
     private Integer stationNumber;

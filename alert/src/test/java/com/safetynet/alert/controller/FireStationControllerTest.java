@@ -21,7 +21,12 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the controller FireStationController
+ * Verify that the return status is correct with or without parameters
+ * Verify that the return status is correct with an empty List
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = FireStationController.class)
 public class FireStationControllerTest {
@@ -111,8 +116,8 @@ public class FireStationControllerTest {
         dtoFinal.setFireStationDTOS(dtos);
 
         //WHEN
-        when(fireStationService.allPeopleInTheFireStation(ArgumentMatchers.anyInt())).thenReturn(dtos);
-        when(fireStationService.allPeopleCoveredByFireStation(dtos)).thenReturn(dtoFinal);
+        when(fireStationService.getAllPeopleInTheFireStation(ArgumentMatchers.anyInt())).thenReturn(dtos);
+        when(fireStationService.GetAllPeopleCoveredByFireStation(dtos)).thenReturn(dtoFinal);
 
         //THEN
         mvc.perform(get("/firestation")
@@ -126,7 +131,7 @@ public class FireStationControllerTest {
         //GIVEN
         List<FireStationDTO> dtos = new ArrayList<>();
         //WHEN
-        when(fireStationService.allPeopleInTheFireStation(ArgumentMatchers.anyInt())).thenReturn(dtos);
+        when(fireStationService.getAllPeopleInTheFireStation(ArgumentMatchers.anyInt())).thenReturn(dtos);
 
         //THEN
         mvc.perform(get("/firestation")
@@ -154,7 +159,7 @@ public class FireStationControllerTest {
         dtoFinal.setFireStationDTOS(dtos);
 
         //WHEN
-        when(fireStationService.allPeopleCoveredByFireStation(ArgumentMatchers.anyList())).thenReturn(dtoFinal);
+        when(fireStationService.GetAllPeopleCoveredByFireStation(ArgumentMatchers.anyList())).thenReturn(dtoFinal);
 
         //THEN
         mvc.perform(get("/firestation")

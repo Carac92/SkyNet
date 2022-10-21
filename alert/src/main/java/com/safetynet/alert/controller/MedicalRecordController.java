@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+ * @author Quentin_Caracatzanis
+ * Controller for Medical Record Service.
+ * Autowired to Medical Record Service. Generate a Post/ Put/Delete endpoints for MedicalRecord at the address :
+ * http_address/medicalRecord
+ * request a MedicalRecord in the body.
+ */
 @RestController
 @RequestMapping("medicalRecord")
 public class MedicalRecordController {

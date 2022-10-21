@@ -2,6 +2,7 @@ package com.safetynet.alert.controller;
 
 import com.safetynet.alert.dto.PhoneAlertDTO;
 import com.safetynet.alert.service.PhoneAlertService;
+import com.safetynet.alert.service.impl.PhoneAlertServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;

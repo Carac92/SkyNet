@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller of childAlert
+ * Is Autowired to ChildAlertService. Create a get endpoint return the list of childAlertDTO in the Json format.
+ * Request an address as a parameter.
+ */
 @RestController
 @RequestMapping("/childAlert")
 public class ChildAlertController {

@@ -4,6 +4,11 @@ import com.safetynet.alert.model.MedicalRecord;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Interface of the Medical Record Service.
+ * Generate a Post / Put / Delete Methods.
+ */
 public interface MedicalRecordService {
 
     boolean updateMedicalRecord(MedicalRecord medicalRecordToUpdate);

@@ -12,6 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of Person Information Service.
+ * Contains one method that returns a List of Person Information based on a first name and a last name.
+ * The algorithm get the List of person of data that has the same first and last name. Then for each person
+ * get the Medical Record of each person to generate the PersonInfoDTO which will be added to the returned list.
+ */
 @Service
 public class PersonInfoServiceImpl implements PersonInfoService {
     @Autowired

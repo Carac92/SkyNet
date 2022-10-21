@@ -19,6 +19,12 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test the controller CommunityEmailController
+ * verify that the return status is correct with and without the parameter.
+ * verify that the return status is correct with an empty list of emails.
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = CommunityEmailController.class)
 public class CommunityEmailControllerTest {

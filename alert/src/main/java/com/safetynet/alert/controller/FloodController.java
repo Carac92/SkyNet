@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller for Flood Service.
+ * Autowired to Flood Service. Generate a get endpoint to get a list of FloodDTO in the JSON format at the address :
+ * http_address/flood/stations?stations="ListOfStations"
+ * needs a List of Stations number in parameter.
+ */
 @RestController
 @RequestMapping("flood/stations")
 public class FloodController {

@@ -16,6 +16,12 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the controller PersonController.
+ * Verify that the return status is correct with or without parameters
+ * Verify that the return status is correct with an empty List
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = PersonController.class)
 public class PersonControllerTest {

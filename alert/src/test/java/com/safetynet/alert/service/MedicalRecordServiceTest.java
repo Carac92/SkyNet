@@ -19,6 +19,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the Service MedicalRecordServiceImpl
+ * verify that the service add, update, and delete correctly the data on the Bean Data.
+ */
 @ExtendWith(SpringExtension.class)
 public class MedicalRecordServiceTest {
 
@@ -26,7 +31,7 @@ public class MedicalRecordServiceTest {
     MedicalRecordServiceImpl medicalRecordService;
 
     @Mock
-    private Data data;
+    Data data;
 
     @BeforeEach
     public void setUp(){

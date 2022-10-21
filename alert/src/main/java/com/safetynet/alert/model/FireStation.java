@@ -1,8 +1,11 @@
 package com.safetynet.alert.model;
 
-import org.springframework.stereotype.Component;
+/**
+ * @author Quentin_Caracatzanis
+ * Model of FireStation contains number of Station and Address.
+ */
 
-@Component
+
 public class FireStation {
     private Integer station;
     private String address;

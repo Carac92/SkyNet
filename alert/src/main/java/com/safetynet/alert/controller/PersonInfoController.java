@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Controller for Person Information Service.
+ * Autowired to PersonInfoService. Generate a get endpoint that gives a Json of a List of PersonInfoDTO at the address:
+ * http_address/personInfo?firstName="firstName"&lastName="lastName"
+ * Request a first name and last name in parameters.
+ */
 @RestController
 @RequestMapping("/personInfo")
 public class PersonInfoController {

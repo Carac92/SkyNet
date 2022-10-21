@@ -3,6 +3,11 @@ package com.safetynet.alert.dto;
 
 import lombok.Data;
 import java.util.List;
+
+/**
+ * @author Quentin_Caracatzanis
+ * Data Transfer Object for Fire end point.
+ */
 @Data
 public class FireDTO {
     private Integer stationNumber;

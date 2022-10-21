@@ -13,6 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of FireService
+ * Contains one method that returns a List of FireDTO based on an address.
+ * The algorithm get a list of the firestation that deserve the address.
+ * Then the algorithm get a list of Person at that address and get their Medical Record.
+ * Finish by generating a List of FireDTO with MR information, person information and fire station number.
+ */
 @Service
 public class FireServiceImpl implements FireService {
 

@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of CommunityEmailService
+ * Has one method that returns a List of the CommunityEmailDTO based on a city.
+ * The algorithm get the email of the persons that live in the city in parameters.
+ */
 @Service
 public class CommunityEmailServiceImpl implements CommunityEmailService {
     @Autowired

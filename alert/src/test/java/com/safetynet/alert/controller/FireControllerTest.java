@@ -20,6 +20,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Test of the controller FireController.
+ * Verify that the return status is correct with or without the parameter.
+ * Verify that the return status is correct with an empty List.
+ */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = FireController.class)
 public class FireControllerTest {

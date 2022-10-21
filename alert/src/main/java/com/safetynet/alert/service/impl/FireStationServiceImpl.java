@@ -15,6 +15,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Implementation of FireStationService
+ * Autowired to the Bean of Data. Generate a get/post/delete methods for FireStation that needs a firestation in parameter.
+ * Generate a get method that return a List of FireStationDTO.
+ * The algorithm of the get method use the number of the fire station and get for each address the persons mapped by the
+ * fire station and some of their medical record information. It returns also the number of minor and adults of that list.
+ */
 @Service
 public class FireStationServiceImpl implements FireStationService {
     @Autowired
@@ -66,7 +74,7 @@ public class FireStationServiceImpl implements FireStationService {
     }
 
     @Override
-    public List<FireStationDTO> allPeopleInTheFireStation(Integer stationNumber) {
+    public List<FireStationDTO> getAllPeopleInTheFireStation(Integer stationNumber) {
         List<FireStationDTO> fireStationDTOS = new ArrayList<>();
         List<FireStation> fireStations = data.getFirestations().stream()
                 .filter(fireStation -> fireStation.getStation().equals(stationNumber)).collect(Collectors.toList());
@@ -90,15 +98,18 @@ public class FireStationServiceImpl implements FireStationService {
         }
         return fireStationDTOS;
     }
-
+// Method that return the Final FireStationDTO object that contains the List of FireStationDTO and the number of minor
+// and the number of adults.
     @Override
-    public FireStationFinalDTO allPeopleCoveredByFireStation(List<FireStationDTO> fireStationDTOs) {
+    public FireStationFinalDTO GetAllPeopleCoveredByFireStation(List<FireStationDTO> fireStationDTOs) {
         FireStationFinalDTO dto = new FireStationFinalDTO();
         dto.setFireStationDTOS(fireStationDTOs);
         dto.setNumberOfMinor(getNumberOfMinor(fireStationDTOs));
         dto.setNumberOfAdults(getNumberOfAdults(dto.getNumberOfMinor()));
         return dto;
     }
+// Method that return the number of minor based on the List of FireStationDTO.
+// This method is used by GetAllPeopleCoveredByFireStation.
 
 
     public Integer getNumberOfMinor(List<FireStationDTO> fireStationDTOs) {
@@ -109,7 +120,8 @@ public class FireStationServiceImpl implements FireStationService {
         return minor;
     }
 
-
+// Method that return the number of Adults based on the number of minor.
+// This method is used by GetAllPeopleCoveredByFireStation.
     public Integer getNumberOfAdults(Integer numberOfMinor) {
         return data.getPersons().size() - numberOfMinor;
     }

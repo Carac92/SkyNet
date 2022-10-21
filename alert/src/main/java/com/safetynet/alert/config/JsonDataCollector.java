@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
+/**
+ * @author Quentin_Caracatzanis
+ * Configuration of the Application.
+ * Generate a Bean of Data Model based on the data.json file in the resources.
+ */
 @Configuration
 public class JsonDataCollector {
 

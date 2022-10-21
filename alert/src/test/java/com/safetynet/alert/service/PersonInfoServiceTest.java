@@ -1,10 +1,11 @@
 package com.safetynet.alert.service;
 
-import com.safetynet.alert.dto.ChildAlertDTO;
+import com.safetynet.alert.dto.PersonInfoDTO;
 import com.safetynet.alert.model.Data;
+import com.safetynet.alert.model.FireStation;
 import com.safetynet.alert.model.MedicalRecord;
 import com.safetynet.alert.model.Person;
-import com.safetynet.alert.service.impl.ChildAlertServiceImpl;
+import com.safetynet.alert.service.impl.PersonInfoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,19 +18,19 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.when;
 
 /**
  * @author Quentin_Caracatzanis
- * Test of the Service ChildAlertServiceImpl.
+ * Test the Service PersonInfoServiceImpl
  * verify that the service doesn't return an empty List.
  */
 @ExtendWith(SpringExtension.class)
-public class ChildAlertServiceTest {
+public class PersonInfoServiceTest {
 
     @InjectMocks
-    ChildAlertServiceImpl childAlertService;
+    private PersonInfoServiceImpl personInfoService;
 
     @Mock
     Data data;
@@ -44,20 +45,21 @@ public class ChildAlertServiceTest {
         Person person = new Person("John", "Boyd", "1509 Culver St", "Culver", "97451", "841-874-6512","jaboyd@email.com");
         List<Person> persons = new ArrayList<>();
         persons.add(person);
+        FireStation fireStation = new FireStation(1, "1509 Culver St");
+        List<FireStation> fireStations= new ArrayList<>();
+        fireStations.add(fireStation);
 
+        when(data.getFirestations()).thenReturn(fireStations);
         when(data.getMedicalrecords()).thenReturn(medicalRecords);
         when(data.getPersons()).thenReturn(persons);
     }
 
     @Test
-    public void testGetChildAlertDto() throws Exception {
-        String address = "1509 Culver St";
+    public void testGetPersonInfoDto() throws Exception {
+        List<PersonInfoDTO> result = personInfoService.getPersonInfoByName("John", "Boyd");
 
-        //WHEN
-        List<ChildAlertDTO> childAlerts = childAlertService.findChildOfAnAddress(address);
-
-        //THEN
-        assertThat(childAlerts).isNotNull();
+        assertThat(result.size()).isEqualTo(1);
+        assertThat(result).isNotNull();
     }
 
 }
