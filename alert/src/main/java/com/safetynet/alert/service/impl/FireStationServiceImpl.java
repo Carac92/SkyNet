@@ -30,11 +30,11 @@ public class FireStationServiceImpl implements FireStationService {
 
 
     @Override
-    public boolean updateFireStation(FireStation fireStationToUpdate){
+    public boolean updateFireStation(String address, FireStation fireStationToUpdate){
         List<FireStation> fireStations = data.getFirestations();
         int i = 0;
         for(FireStation fireStation : data.getFirestations()) {
-            if(fireStation.getAddress().equals(fireStationToUpdate.getAddress())) {
+            if(fireStation.getAddress().equals(address)) {
                 fireStations.set(i, fireStationToUpdate);
                 data.setFirestations(fireStations);
                 return true;
@@ -60,12 +60,12 @@ public class FireStationServiceImpl implements FireStationService {
         }
 
     @Override
-    public boolean removeFireStation(FireStation fireStation) {
+    public boolean removeFireStation(Integer number, String address) {
         List<FireStation> fireStations = data.getFirestations();
         Iterator<FireStation> it = fireStations.iterator();
         while(it.hasNext()) {
             FireStation fs = it.next();
-            if(fs.getAddress().equals(fireStation.getAddress())) {
+            if(fs.getAddress().equals(address)&&fs.getStation().equals(number)) {
                 it.remove();
                 return true;
             }

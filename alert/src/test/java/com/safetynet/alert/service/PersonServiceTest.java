@@ -44,7 +44,7 @@ public class PersonServiceTest {
 
 
         // WHEN
-        boolean result = personService.addPerson(new Person("Test", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
+        boolean result = personService.addPerson( new Person("Test", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
 
         // THEN
         assertThat(result).isEqualTo(true);
@@ -54,7 +54,7 @@ public class PersonServiceTest {
     public void updatePersonTest(){
 
         // WHEN
-        boolean result = personService.updatePerson(new Person("John", "Boyd", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
+        boolean result = personService.updatePerson("John","Boyd", new Person("John", "Boyd", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO", "testGetFireDTO"));
 
         // THEN
 
@@ -62,27 +62,27 @@ public class PersonServiceTest {
     }
     @Test
     public void deletePersonTest(){
-        boolean result = personService.deletePerson(new Person("John", "Boyd", "", "", "", "", ""));
+        boolean result = personService.deletePerson("John", "Boyd");
 
         // THEN
         assertThat(result).isEqualTo(true);
     }
     @Test
     public void deletePersonThatDoesNotExistTest(){
-        boolean result = personService.deletePerson(new Person("t", "t", "", "", "", "", ""));
+        boolean result = personService.deletePerson("t", "t");
 
         //then
         assertThat(result).isEqualTo(false);
     }
     @Test
     public void updatePersonThatDoesNotExistTest(){
-        boolean result = personService.updatePerson(new Person());
+        boolean result = personService.updatePerson("","", new Person());
 
         assertThat(result).isEqualTo(false);
     }
     @Test
     public void addPersonThatAlreadyExistsTest(){
-        boolean result = personService.addPerson(new Person("John", "Boyd", "1509 Culver St", "Culver", "97451", "841-874-6512","jaboyd@email.com"));
+        boolean result = personService.addPerson( new Person("John", "Boyd", "1509 Culver St", "Culver", "97451", "841-874-6512","jaboyd@email.com"));
 
         assertThat(result).isEqualTo(false);
     }

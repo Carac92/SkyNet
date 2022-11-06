@@ -72,7 +72,7 @@ public class FireStationServiceTest {
         // Given
 
         //When
-        boolean result = fireStationService.updateFireStation(new FireStation(1, "1509 Culver St"));
+        boolean result = fireStationService.updateFireStation("1509 Culver St",new FireStation(1,null));
 
         //Then
         assertThat(result).isEqualTo(true);
@@ -83,21 +83,21 @@ public class FireStationServiceTest {
         // Given
 
         // When
-        boolean result = fireStationService.removeFireStation(new FireStation(1, "1509 Culver St"));
+        boolean result = fireStationService.removeFireStation(1, "1509 Culver St");
 
         // Then
         assertThat(result).isEqualTo(true);
     }
     @Test
     public void deleteFireStationThatDoesNotExistTest(){
-        boolean result = fireStationService.removeFireStation(new FireStation());
+        boolean result = fireStationService.removeFireStation(null,null);
 
         assertThat(result).isEqualTo(false);
     }
 
     @Test
     public void updateFireStationThatDoesNotExist(){
-        boolean result = fireStationService.updateFireStation(new FireStation());
+        boolean result = fireStationService.updateFireStation(null,new FireStation());
 
         assertThat(result).isEqualTo(false);
     }

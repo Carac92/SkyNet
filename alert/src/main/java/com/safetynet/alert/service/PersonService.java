@@ -2,8 +2,6 @@ package com.safetynet.alert.service;
 
 import com.safetynet.alert.model.Person;
 
-import java.util.List;
-
 /**
  * @author Quentin_Caracatzanis
  * Interface of the Person service.
@@ -11,8 +9,8 @@ import java.util.List;
  */
 public interface PersonService {
 
-    boolean updatePerson(Person personToUpdate);
+    boolean updatePerson(String firstName, String lastName, Person personToUpdate);
     boolean addPerson(Person person);
 
-    boolean deletePerson(Person person);
+    boolean deletePerson(String firstName, String lastName);
 }

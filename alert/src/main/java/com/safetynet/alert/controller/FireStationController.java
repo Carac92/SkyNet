@@ -49,13 +49,18 @@ public class FireStationController {
         }
     }
     @PutMapping
-    public ResponseEntity<String> updateFireStation(@RequestBody FireStation fireStation) {
+    public ResponseEntity<String> updateFireStation(@RequestParam(name="address") String address,
+                                                    @RequestBody FireStation fireStation) {
         log.info("Updating FireStation - params:{}", fireStation.toString());
-        if(StringUtils.isEmpty(fireStation.getAddress()) || fireStation.getStation()==null){
+        if(address.isEmpty()|| address==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Adress And Station Required");
+                    .body("Adress Required");
+        } else if (fireStation==null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("body required");
+
         }
-        boolean updateFS= fireStationService.updateFireStation(fireStation);
+        boolean updateFS= fireStationService.updateFireStation(address, fireStation);
         if(updateFS==false){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("address already mapped to a Firestation");
@@ -66,20 +71,21 @@ public class FireStationController {
         }
     }
     @DeleteMapping
-    public ResponseEntity <String> deleteFireStation(@RequestBody FireStation fireStation){
-        log.info("Deleting Firestation - params : {}", fireStation.toString());
-        if(StringUtils.isEmpty(fireStation.getAddress()) || fireStation.getStation()==null){
+    public ResponseEntity <String> deleteFireStation(@RequestParam(name="station") Integer station,
+                                                     @RequestParam (name="address")String address){
+        log.info("Deleting Firestation - params : {}", station + ":" + address);
+        if((address.isEmpty() || address == null) || station==null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Adress And Station Required");
         }
-        boolean deleteFS= fireStationService.removeFireStation(fireStation);
+        boolean deleteFS= fireStationService.removeFireStation(station,address);
         if(deleteFS==false){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("FireStation does not exist");
         }else{
-            log.info("Removing Fire Station - Response: {}", fireStation.toString());
+            log.info("Removing Fire Station - Response: {}", station + ":" + address);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Deleted : " + fireStation.toString());
+                    .body("Deleted : " + station + ":" + address);
         }
     }
     @GetMapping

@@ -48,9 +48,11 @@ public class FireStationControllerTest {
 
     @Test
     public void testUpdateFireStation() throws Exception {
-        when(fireStationService.updateFireStation(ArgumentMatchers.any(FireStation.class))).thenReturn(true);
+        when(fireStationService.updateFireStation(anyString(), ArgumentMatchers.any(FireStation.class)))
+                .thenReturn(true);
 
         mvc.perform(put("/firestation")
+                .param("address", "1509 Culver St")
                 .content("{ \"station\":9, \"address\": \"1509 Culver St\"}")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -59,30 +61,33 @@ public class FireStationControllerTest {
 
     @Test
     public void testDeleteFireStation() throws Exception {
-        when(fireStationService.removeFireStation(ArgumentMatchers.any(FireStation.class)))
+        when(fireStationService.removeFireStation(anyInt(),anyString()))
                 .thenReturn(true);
 
         mvc.perform(delete("/firestation")
-                .content("{ \"station\": 3, \"address\": \"1509 Culver St\"}")
+                .param("station", "3")
+                .param("address", "1509 Culver St")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
     public void testDeleteFireStationThatIsEmpty() throws Exception {
-        when(fireStationService.removeFireStation(ArgumentMatchers.any(FireStation.class)))
+        when(fireStationService.removeFireStation(anyInt(),anyString()))
                 .thenReturn(true);
         mvc.perform(delete("/firestation")
-                .content("{}")
+                .param("station", "")
+                .param("address", "")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
     @Test
     public void testUpdateFireStationThatIsEmpty()throws Exception {
-        when(fireStationService.updateFireStation(ArgumentMatchers.any(FireStation.class)))
+        when(fireStationService.updateFireStation(anyString(),ArgumentMatchers.any(FireStation.class)))
                 .thenReturn(true);
         mvc.perform(put("/firestation")
+                .param("address", "")
                 .content("{}")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))

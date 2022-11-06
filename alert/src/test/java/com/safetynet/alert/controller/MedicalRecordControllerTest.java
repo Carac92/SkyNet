@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -45,10 +46,12 @@ public class MedicalRecordControllerTest {
 
     @Test
     public void testUpdateMedicalRecord() throws Exception {
-        when(medicalRecordService.updateMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+        when(medicalRecordService.updateMedicalRecord(anyString(), anyString(), ArgumentMatchers.any(MedicalRecord.class)))
                 .thenReturn(true);
 
         mvc.perform(put("/medicalRecord")
+                .param("firstName", "Tenley")
+                .param("lastName", "Boyd")
                 .content("{ \"firstName\":\"Tenley\", \"lastName\":\"Boyd\", \"birthdate\":\"02/18/2020\", \"medications\":[\"Doliprane\"], \"allergies\":[\"peanut\"] }")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -57,32 +60,36 @@ public class MedicalRecordControllerTest {
 
     @Test
     public void testDeleteMedicalRecord() throws Exception {
-        when(medicalRecordService.removeMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+        when(medicalRecordService.removeMedicalRecord(anyString(),anyString()))
                 .thenReturn(true);
 
         mvc.perform(delete("/medicalRecord")
-                .content("{ \"firstName\":\"John\", \"lastName\":\"Boyd\"}")
+                .param("firstName","John")
+                .param("lastName","Boyd")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
     public void testDeleteMedicalRecordThatIsEmpty()throws Exception {
-        when(medicalRecordService.removeMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+        when(medicalRecordService.removeMedicalRecord(anyString(), anyString()))
                 .thenReturn(true);
 
         mvc.perform(delete("/medicalRecord")
-                .content("{}")
+                .param("firstName","")
+                .param("lastName", "")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
     @Test
     public void testUpdateMedicalRecordThatIsEmpty()throws Exception {
-        when(medicalRecordService.updateMedicalRecord(ArgumentMatchers.any(MedicalRecord.class)))
+        when(medicalRecordService.updateMedicalRecord(anyString(), anyString(), ArgumentMatchers.any(MedicalRecord.class)))
                 .thenReturn(true);
 
         mvc.perform(put("/medicalRecord")
+                .param("firstName", "")
+                .param("lastName", "")
                 .content("{}")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))

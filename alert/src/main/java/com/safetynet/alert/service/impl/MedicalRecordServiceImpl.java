@@ -22,12 +22,12 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
 
     @Override
-    public boolean updateMedicalRecord(MedicalRecord medicalRecordToUpdate) {
+    public boolean updateMedicalRecord(String firstName, String lastName, MedicalRecord medicalRecordToUpdate) {
         List<MedicalRecord> medicalRecords = data.getMedicalrecords();
         int i= 0;
         for (MedicalRecord medicalRecord : medicalRecords) {
-           if((medicalRecord.getFirstName().equals(medicalRecordToUpdate.getFirstName()))
-                   &&(medicalRecord.getLastName().equals(medicalRecordToUpdate.getLastName()))) {
+           if((medicalRecord.getFirstName().equals(firstName))
+                   &&(medicalRecord.getLastName().equals(lastName))) {
                medicalRecords.set(i, medicalRecordToUpdate);
                data.setMedicalrecords(medicalRecords);
                return true;
@@ -54,13 +54,13 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     @Override
-    public boolean removeMedicalRecord(MedicalRecord medicalRecordToDelete) {
+    public boolean removeMedicalRecord(String firstName, String lastName) {
         List<MedicalRecord> medicalRecords = data.getMedicalrecords();
         Iterator<MedicalRecord> it = medicalRecords.iterator();
         while(it.hasNext()) {
             MedicalRecord mr = it.next();
-            if(mr.getFirstName().equals(medicalRecordToDelete.getFirstName())&&
-                    mr.getLastName().equals(medicalRecordToDelete.getLastName())) {
+            if(mr.getFirstName().equals(firstName)&&
+                    mr.getLastName().equals(lastName)) {
                 it.remove();
                 return true;
             }

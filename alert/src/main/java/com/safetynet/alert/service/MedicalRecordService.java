@@ -2,8 +2,6 @@ package com.safetynet.alert.service;
 
 import com.safetynet.alert.model.MedicalRecord;
 
-import java.util.List;
-
 /**
  * @author Quentin_Caracatzanis
  * Interface of the Medical Record Service.
@@ -11,7 +9,7 @@ import java.util.List;
  */
 public interface MedicalRecordService {
 
-    boolean updateMedicalRecord(MedicalRecord medicalRecordToUpdate);
+    boolean updateMedicalRecord(String firstName,String lastName,MedicalRecord medicalRecordToUpdate);
     boolean addMedicalRecord(MedicalRecord medicalRecord);
-    boolean removeMedicalRecord(MedicalRecord medicalRecord);
+    boolean removeMedicalRecord(String firstName, String lastName);
 }

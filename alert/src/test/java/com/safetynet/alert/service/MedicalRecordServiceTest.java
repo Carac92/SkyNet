@@ -1,7 +1,6 @@
 package com.safetynet.alert.service;
 
 import com.safetynet.alert.model.Data;
-import com.safetynet.alert.model.FireStation;
 import com.safetynet.alert.model.MedicalRecord;
 import com.safetynet.alert.service.impl.MedicalRecordServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,7 +62,7 @@ public class MedicalRecordServiceTest {
         MedicalRecord medicalRecord = new MedicalRecord("John", "Boyd", new Date(01/01/1980), medications, allergies);
 
         //WHEN
-        boolean result = medicalRecordService.updateMedicalRecord(medicalRecord);
+        boolean result = medicalRecordService.updateMedicalRecord("John", "Boyd", medicalRecord);
 
         //THEN
         assertThat(result).isEqualTo(true);
@@ -72,20 +71,20 @@ public class MedicalRecordServiceTest {
     public void deleteMedicalRecordTest(){
 
         // WHEN
-        boolean result = medicalRecordService.removeMedicalRecord(new MedicalRecord("John", "Boyd", new Date(01/01/1980), null, null));
+        boolean result = medicalRecordService.removeMedicalRecord("John", "Boyd");
 
         // THEN
         assertThat(result).isEqualTo(true);
     }
     @Test
     public void deleteMedicalRecordThatDoesNotExistTest(){
-        boolean result = medicalRecordService.removeMedicalRecord(new MedicalRecord());
+        boolean result = medicalRecordService.removeMedicalRecord("","");
 
         assertThat(result).isEqualTo(false);
     }
     @Test
     public void updateMedicalRecordThatDoesNotExistTest(){
-        boolean result = medicalRecordService.updateMedicalRecord(new MedicalRecord());
+        boolean result = medicalRecordService.updateMedicalRecord("","",new MedicalRecord());
 
         assertThat(result).isEqualTo(false);
     }

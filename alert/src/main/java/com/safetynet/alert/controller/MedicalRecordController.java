@@ -44,13 +44,18 @@ public class MedicalRecordController {
     }
 
     @PutMapping
-    public ResponseEntity <String> updateMedicalRecord(@RequestBody MedicalRecord medicalRecord){
+    public ResponseEntity <String> updateMedicalRecord(@RequestParam(name="firstName") String firstName,
+                                                       @RequestParam(name="lastName") String lastName,
+                                                       @RequestBody MedicalRecord medicalRecord){
         log.info("Update Medical Record - params: {}", medicalRecord.toString());
-        if(StringUtils.isEmpty(medicalRecord.getFirstName()) || StringUtils.isEmpty(medicalRecord.getLastName())){
+        if((firstName.isEmpty()|| firstName==null) || (lastName.isEmpty()|| lastName==null)){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("First Name and Last Name are required");
+        }else if(medicalRecord ==null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("body required");
         }
-        boolean updateMR = medicalRecordService.updateMedicalRecord(medicalRecord);
+        boolean updateMR = medicalRecordService.updateMedicalRecord(firstName,lastName, medicalRecord);
         if(updateMR == false) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Medical Record does not exist");
@@ -62,20 +67,21 @@ public class MedicalRecordController {
     }
 
     @DeleteMapping
-    public ResponseEntity <String> deleteMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
-        log.info("Delete Medical Record - params: {}", medicalRecord.toString());
-        if(StringUtils.isEmpty(medicalRecord.getFirstName()) || StringUtils.isEmpty(medicalRecord.getLastName())) {
+    public ResponseEntity <String> deleteMedicalRecord(@RequestParam(name="firstName") String firstName,
+                                                       @RequestParam(name="lastName") String lastName) {
+        log.info("Delete Medical Record - params: {}", firstName + " " + lastName);
+        if((firstName.isEmpty()|| firstName == null) || (lastName.isEmpty()|| lastName == null)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("First name and last name are required");
         }
-        boolean deleteMR = medicalRecordService.removeMedicalRecord(medicalRecord);
+        boolean deleteMR = medicalRecordService.removeMedicalRecord(firstName, lastName);
         if(deleteMR == false) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Medical Record does not exist");
         }else {
-            log.info("Deleting Medical Record - Response: {}", medicalRecord.toString());
+            log.info("Deleting Medical Record - Response: {}", firstName + " " + lastName);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("Medical Record deleted " + medicalRecord.toString());
+                    .body("Medical Record deleted " + firstName + " " + lastName);
         }
     }
 

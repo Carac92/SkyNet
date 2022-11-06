@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface FireStationService {
 
-    boolean updateFireStation(FireStation fireStationToUpdate);
+    boolean updateFireStation(String address,FireStation fireStationToUpdate);
     boolean addFireStation(FireStation fireStation);
-    boolean removeFireStation(FireStation fireStation);
+    boolean removeFireStation(Integer number, String address);
     List<FireStationDTO> getAllPeopleInTheFireStation(Integer stationNumber);
     FireStationFinalDTO GetAllPeopleCoveredByFireStation(List<FireStationDTO> fireStationDTOs);
 }

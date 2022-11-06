@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +34,7 @@ public class PersonControllerTest {
 
     @Test
     public void testAddPerson() throws Exception {
-        when(personService.addPerson(ArgumentMatchers.any(Person.class)))
+        when(personService.addPerson( ArgumentMatchers.any(Person.class)))
                 .thenReturn(true);
 
         mvc.perform(post("/person")
@@ -44,11 +45,13 @@ public class PersonControllerTest {
     }
     @Test
     public void testUpdatePerson() throws Exception {
-        when(personService.updatePerson(ArgumentMatchers.any(Person.class)))
+        when(personService.updatePerson(anyString(),anyString(), ArgumentMatchers.any(Person.class)))
                 .thenReturn(true);
 
         mvc.perform(put("/person")
-                .content("{ \"firstName\":\"John\", \"lastName\":\"Boyd\", \"address\":\"1509 Culver St\", \"city\":\"Culver\", \"zip\":\"97451\", \"phone\":\"841-874-6512\", \"email\":\"jaboyd@email.com\" }")
+                .param("firstName", "John")
+                .param("lastName", "Boyd")
+                .content("{ \"address\":\"1509 Culver St\", \"city\":\"Culver\", \"zip\":\"97451\", \"phone\":\"841-874-6512\", \"email\":\"jaboyd@email.com\" }")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -56,18 +59,19 @@ public class PersonControllerTest {
 
     @Test
     public void testDeletePerson() throws Exception {
-        when(personService.deletePerson(ArgumentMatchers.any(Person.class)))
+        when(personService.deletePerson(anyString(),anyString()))
                 .thenReturn(true);
 
         mvc.perform(delete("/person")
-                .content("{ \"firstName\":\"John\", \"lastName\":\"Boyd\" }")
+                .param("firstName", "John")
+                .param("lastName", "Boyd")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
     public void testDeletePersonThatIsEmpty()throws Exception {
-        when(personService.deletePerson(ArgumentMatchers.any(Person.class)))
+        when(personService.deletePerson(anyString(),anyString()))
                 .thenReturn(true);
         mvc.perform(delete("/person")
                 .content("{}")
@@ -77,7 +81,7 @@ public class PersonControllerTest {
     }
     @Test
     public void testUpdatePersonThatIsEmpty()throws Exception {
-        when(personService.updatePerson(ArgumentMatchers.any(Person.class)))
+        when(personService.updatePerson(anyString(),anyString(), ArgumentMatchers.any(Person.class)))
                 .thenReturn(true);
 
         mvc.perform(put("/person")
